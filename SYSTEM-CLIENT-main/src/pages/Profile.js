@@ -91,11 +91,11 @@ export default function Profile() {
         <Container className="mt-5">
             <h2>Profile Settings</h2>
 
-            <Card className="mt-4">
+            <Card className="mt-5">
                 <Card.Body>
                     {userProfile ? (
                         <div>
-                            <h3 className="mt-5 mb-3">Your Information</h3>
+                            <h3 className="mb-3">Your Information</h3>
                             <p><strong>Name:</strong> {userProfile.firstName} {userProfile.middleName} {userProfile.lastName}</p>
                             <p><strong>Email:</strong> {userProfile.email}</p>
                             <p><strong>Contact Number:</strong> {userProfile.contactNumber}</p>
@@ -109,7 +109,8 @@ export default function Profile() {
             <Card className="mt-4">
                 <Card.Body>
                     <Form onSubmit={handlePasswordUpdate}>
-                        <Form.Group className="mb-3 mt-5">
+                        <Form.Group className="mb-3">
+                            <h3 className="mb-3">Change Password</h3>
                             <Form.Label>New Password</Form.Label>
                             <Form.Control
                                 type="password"
