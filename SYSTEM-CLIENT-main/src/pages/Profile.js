@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Container, Form, Button } from "react-bootstrap";
+import { Container, Form, Button, Card } from "react-bootstrap";
 import Swal from "sweetalert2";
 
 export default function Profile() {
@@ -7,11 +7,9 @@ export default function Profile() {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [userProfile, setUserProfile] = useState(null);
 
-    
     useEffect(() => {
         const token = localStorage.getItem("token");
 
-       
         fetch("http://localhost:4000/users/details", {
             method: "GET",
             headers: {
@@ -53,7 +51,6 @@ export default function Profile() {
 
         const token = localStorage.getItem("token");
 
-        
         fetch("http://localhost:4000/users/update-password", {
             method: "PUT",
             headers: {
@@ -94,41 +91,48 @@ export default function Profile() {
         <Container className="mt-5">
             <h2>Profile Settings</h2>
 
-            
-            {userProfile ? (
-                <div>
-                    <h3 className="mt-5 mb-3">Your Information</h3>
-                    <p><strong>Name:</strong> {userProfile.firstName} {userProfile.middleName} {userProfile.lastName}</p>
-                    <p><strong>Email:</strong> {userProfile.email}</p>
-                    <p><strong>Contact Number:</strong> {userProfile.contactNumber}</p>
-                </div>
-            ) : (
-                <p>Loading profile...</p>
-            )}
+            <Card className="mt-4">
+                <Card.Body>
+                    {userProfile ? (
+                        <div>
+                            <h3 className="mt-5 mb-3">Your Information</h3>
+                            <p><strong>Name:</strong> {userProfile.firstName} {userProfile.middleName} {userProfile.lastName}</p>
+                            <p><strong>Email:</strong> {userProfile.email}</p>
+                            <p><strong>Contact Number:</strong> {userProfile.contactNumber}</p>
+                        </div>
+                    ) : (
+                        <p>Loading profile...</p>
+                    )}
+                </Card.Body>
+            </Card>
 
-            <Form onSubmit={handlePasswordUpdate}>
-                <Form.Group className="mb-3 mt-5">
-                    <Form.Label>New Password</Form.Label>
-                    <Form.Control
-                        type="password"
-                        placeholder="Enter new password"
-                        value={newPassword}
-                        onChange={(e) => setNewPassword(e.target.value)}
-                    />
-                </Form.Group>
+            <Card className="mt-4">
+                <Card.Body>
+                    <Form onSubmit={handlePasswordUpdate}>
+                        <Form.Group className="mb-3 mt-5">
+                            <Form.Label>New Password</Form.Label>
+                            <Form.Control
+                                type="password"
+                                placeholder="Enter new password"
+                                value={newPassword}
+                                onChange={(e) => setNewPassword(e.target.value)}
+                            />
+                        </Form.Group>
 
-                <Form.Group className="mb-3">
-                    <Form.Label>Confirm New Password</Form.Label>
-                    <Form.Control
-                        type="password"
-                        placeholder="Confirm new password"
-                        value={confirmPassword}
-                        onChange={(e) => setConfirmPassword(e.target.value)}
-                    />
-                </Form.Group>
+                        <Form.Group className="mb-3">
+                            <Form.Label>Confirm New Password</Form.Label>
+                            <Form.Control
+                                type="password"
+                                placeholder="Confirm new password"
+                                value={confirmPassword}
+                                onChange={(e) => setConfirmPassword(e.target.value)}
+                            />
+                        </Form.Group>
 
-                <Button variant="primary" type="submit">Update Password</Button>
-            </Form>
+                        <Button variant="primary" type="submit">Update Password</Button>
+                    </Form>
+                </Card.Body>
+            </Card>
         </Container>
     );
 }
