@@ -14,7 +14,7 @@ import { useState, useEffect } from 'react';
 import { UserProvider } from './UserContext';
 import Course from './pages/Course';
 import AddCourse from './pages/AddCourse';
-import ProfileSettings from './pages/Profile';
+import Profile from './pages/Profile';
 
 
 
@@ -69,7 +69,7 @@ function App() {
                 <Route path='/logout' element={<Logout/>}/>
                 <Route path='/courses' element={<Course/>}/>
                 <Route path='/add-course' element={<AddCourse/>}/>
-                <Route path='profile-settings' element={<ProfileSettings/>}/>
+                <Route path='profile-settings' element={<Profile/>}/>
                 <Route path='*' element={<ErrorPage/>}/>
               </Routes>
           </Container>
